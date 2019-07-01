@@ -24,4 +24,4 @@ words are "sb_count\">" and "resultados". However due to the use of reserved wor
 
 In order to keep its configuration, it is considered \" as %22 due to ascii value.
 
-Searchfight it requires to have an internet connection and it is setup to work with results in spanish.
+Searchfight requires to have an internet connection and it is setup to work with search results in spanish.
