@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.IO;
+using System.Configuration;
 
 namespace Searchfight
 {
@@ -22,16 +23,17 @@ namespace Searchfight
                 Websearch search = new Websearch();
                 
                 //Google
-                String Url = "http://www.google.com/search";
-                String data_google = search.Buscarnavegador(Url, args[i].ToString(), "Cerca de ", " resultados");
-                listadoLenguajes.Add(new Lenguaje() { Buscador = "Google", Busqueda = Convert.ToInt64(data_google), Nombre = args[i].ToString() });
+                String Url = System.Configuration.ConfigurationManager.AppSettings["Direccion1"];
+                String data_google = search.Buscarnavegador(Url, args[i].ToString(), ConfigurationManager.AppSettings["CadenaIni1"].Replace("%22>", "\">"), ConfigurationManager.AppSettings["CadenaFin1"]);
+                listadoLenguajes.Add(new Lenguaje() { Buscador = ConfigurationManager.AppSettings["Buscador1"], Busqueda = Convert.ToInt64(data_google), Nombre = args[i].ToString() });
                 
                //MSN Search
-               Url = "https://www.bing.com/search";
-                String data_bing = search.Buscarnavegador(Url, args[i].ToString(), "sb_count\">", " resultados");
-                listadoLenguajes.Add(new Lenguaje() { Buscador = "MSN Search", Busqueda = Convert.ToInt64(data_bing), Nombre = args[i].ToString() });
+               Url = ConfigurationManager.AppSettings["Direccion2"];
+               //string sample = ConfigurationManager.AppSettings["CadenaIni2"].Replace("%22>", "\">");
+                String data_bing = search.Buscarnavegador(Url, args[i].ToString(), ConfigurationManager.AppSettings["CadenaIni2"].Replace("%22>", "\">"), ConfigurationManager.AppSettings["CadenaFin2"]);
+                listadoLenguajes.Add(new Lenguaje() { Buscador = ConfigurationManager.AppSettings["Buscador2"], Busqueda = Convert.ToInt64(data_bing), Nombre = args[i].ToString() });
 
-                Console.WriteLine(args[i].ToString() + ": Google: " + data_google + " MSN Search: " +
+                Console.WriteLine(args[i].ToString() + ": "+ ConfigurationManager.AppSettings["Buscador1"] + ": " + data_google + " "+ ConfigurationManager.AppSettings["Buscador2"] + ": " +
                                   data_bing);
 
 
@@ -42,7 +44,7 @@ namespace Searchfight
             List<Lenguaje> listadoganadores = new List<Lenguaje>();
             foreach (Lenguaje len in listadoLenguajes)
             {
-                if (len.Buscador.Equals("Google"))
+                if (len.Buscador.Equals(ConfigurationManager.AppSettings["Buscador1"]))
                 {
                     if (googlelong < len.Busqueda)
                     {
@@ -51,7 +53,7 @@ namespace Searchfight
                     }
                 }
 
-                if (len.Buscador.Equals("MSN Search"))
+                if (len.Buscador.Equals(ConfigurationManager.AppSettings["Buscador2"]))
                 {
                     if (msnlong < len.Busqueda)
                     {
@@ -80,8 +82,8 @@ namespace Searchfight
                     }
             }
 
-            Console.WriteLine("Google winner: " + googlewinner);
-            Console.WriteLine("MSN Search winner: " + msnwinner);
+            Console.WriteLine(ConfigurationManager.AppSettings["Buscador1"]+" winner: " + googlewinner);
+            Console.WriteLine(ConfigurationManager.AppSettings["Buscador2"]+" winner: " + msnwinner);
 
             long winner = 0;
             String win = "";

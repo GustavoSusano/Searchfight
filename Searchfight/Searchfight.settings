@@ -1,0 +1,30 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Searchfight" GeneratedClassName="Searchfight">
+  <Profiles />
+  <Settings>
+    <Setting Name="Buscador1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Google</Value>
+    </Setting>
+    <Setting Name="Buscador2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MSN Search</Value>
+    </Setting>
+    <Setting Name="Direccion1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://www.google.com/search</Value>
+    </Setting>
+    <Setting Name="Direccion2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://www.bing.com/search</Value>
+    </Setting>
+    <Setting Name="CadenaIni1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">"Cerca de "</Value>
+    </Setting>
+    <Setting Name="CadenaFin1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">" resultados"</Value>
+    </Setting>
+    <Setting Name="CadenaIni2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">"sb_count\"&gt;"</Value>
+    </Setting>
+    <Setting Name="CadenaFin2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">" resultados"</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
