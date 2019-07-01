@@ -16,10 +16,14 @@ namespace Searchfight
     {
         public string Buscarnavegador(String Url, String nombre, String CadenaResult, String CadenaResultFin)
         {
+            string refin = "";
             String cadena = WebSearch(Url, nombre);
+            if (cadena.Length > 0)
+            {
             string valor = getCantidad(cadena, CadenaResult, CadenaResultFin);
             string reval1 = valor.Replace(",", "");
-            string refin = reval1.Replace(".", "");
+            refin = reval1.Replace(".", "");
+             }
             return refin;
         }
 
@@ -36,13 +40,23 @@ namespace Searchfight
             request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.874.121 Safari/535.2";
             request.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
             string webresult = "";
-            
-            HttpWebResponse response = (HttpWebResponse)request.GetResponseAsync().Result;
-            using (StreamReader sr = new StreamReader(response.GetResponseStream()))
+            try
             {
-                webresult = sr.ReadToEnd();
+                using (HttpWebResponse response = (HttpWebResponse) request.GetResponseAsync().Result)
+                {
+                    using (StreamReader sr = new StreamReader(response.GetResponseStream()))
+                    {
+                        webresult = sr.ReadToEnd();
+                    }
+                }
             }
-            
+            catch (AggregateException e)
+            {
+                Console.WriteLine("Error de conexion - Revisar acceso a internet");
+                Console.WriteLine(e.InnerException.Message.ToString());
+                System.Environment.Exit(1);
+            }
+
             return webresult;
         }
 

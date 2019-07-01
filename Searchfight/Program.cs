@@ -25,13 +25,35 @@ namespace Searchfight
                 //Google
                 String Url = System.Configuration.ConfigurationManager.AppSettings["Direccion1"];
                 String data_google = search.Buscarnavegador(Url, args[i].ToString(), ConfigurationManager.AppSettings["CadenaIni1"].Replace("%22>", "\">"), ConfigurationManager.AppSettings["CadenaFin1"]);
-                listadoLenguajes.Add(new Lenguaje() { Buscador = ConfigurationManager.AppSettings["Buscador1"], Busqueda = Convert.ToInt64(data_google), Nombre = args[i].ToString() });
-                
-               //MSN Search
+                try
+                {
+                    listadoLenguajes.Add(new Lenguaje()
+                    {
+                        Buscador = ConfigurationManager.AppSettings["Buscador1"],
+                        Busqueda = Convert.ToInt64(data_google),
+                        Nombre = args[i].ToString()
+                    });
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
+                //MSN Search
                Url = ConfigurationManager.AppSettings["Direccion2"];
                 String data_bing = search.Buscarnavegador(Url, args[i].ToString(), ConfigurationManager.AppSettings["CadenaIni2"].Replace("%22>", "\">"), ConfigurationManager.AppSettings["CadenaFin2"]);
-                listadoLenguajes.Add(new Lenguaje() { Buscador = ConfigurationManager.AppSettings["Buscador2"], Busqueda = Convert.ToInt64(data_bing), Nombre = args[i].ToString() });
-
+                try
+                {
+                    listadoLenguajes.Add(new Lenguaje()
+                    {
+                        Buscador = ConfigurationManager.AppSettings["Buscador2"],
+                        Busqueda = Convert.ToInt64(data_bing),
+                        Nombre = args[i].ToString()
+                    });
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
                 Console.WriteLine(args[i].ToString() + ": "+ ConfigurationManager.AppSettings["Buscador1"] + ": " + data_google + " "+ ConfigurationManager.AppSettings["Buscador2"] + ": " +
                                   data_bing);
 
