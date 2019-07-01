@@ -29,7 +29,6 @@ namespace Searchfight
                 
                //MSN Search
                Url = ConfigurationManager.AppSettings["Direccion2"];
-               //string sample = ConfigurationManager.AppSettings["CadenaIni2"].Replace("%22>", "\">");
                 String data_bing = search.Buscarnavegador(Url, args[i].ToString(), ConfigurationManager.AppSettings["CadenaIni2"].Replace("%22>", "\">"), ConfigurationManager.AppSettings["CadenaFin2"]);
                 listadoLenguajes.Add(new Lenguaje() { Buscador = ConfigurationManager.AppSettings["Buscador2"], Busqueda = Convert.ToInt64(data_bing), Nombre = args[i].ToString() });
 
