@@ -27,7 +27,6 @@ namespace Searchfight
         
         static String WebSearch(string uriBase, string searchQuery)
         {
-            // Construct the search request URI.
             string  uriQuery = uriBase + "?q=" + Uri.EscapeDataString(searchQuery);
 
             var request = (HttpWebRequest) WebRequest.Create(uriQuery);
